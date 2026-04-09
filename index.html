@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Titus Quah – Academic Homepage</title>
+  <style>
+    /* ── Reset & base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Georgia", "Times New Roman", serif;
+      background: #fafafa;
+      color: #222;
+      line-height: 1.7;
+    }
+
+    a {
+      color: #1a6496;
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    /* ── Layout ───────────────────────────────────────────── */
+    header {
+      background: #1a3a5c;
+      color: #fff;
+      padding: 2.5rem 0 2rem;
+      text-align: center;
+    }
+
+    header h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: .02em; }
+    header p.tagline {
+      margin-top: .5rem;
+      font-size: 1.05rem;
+      opacity: .85;
+      font-style: italic;
+    }
+
+    nav {
+      margin-top: 1.2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #cde;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: .95rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    nav a:hover { color: #fff; text-decoration: none; }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    section { margin-bottom: 3rem; }
+
+    h2 {
+      font-size: 1.45rem;
+      color: #1a3a5c;
+      border-bottom: 2px solid #d0dde8;
+      padding-bottom: .35rem;
+      margin-bottom: 1.2rem;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* ── About ────────────────────────────────────────────── */
+    #about .about-grid {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .avatar-placeholder {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: #d0dde8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      flex-shrink: 0;
+    }
+
+    .about-text { flex: 1; min-width: 220px; }
+    .about-text p { margin-bottom: .8rem; }
+
+    .contact-links { margin-top: .8rem; }
+    .contact-links a {
+      display: inline-block;
+      margin-right: .8rem;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: .9rem;
+      background: #e8f0f8;
+      padding: .2rem .7rem;
+      border-radius: 3px;
+      color: #1a6496;
+    }
+    .contact-links a:hover { background: #1a6496; color: #fff; text-decoration: none; }
+
+    /* ── Projects ─────────────────────────────────────────── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #d8e4ee;
+      border-radius: 6px;
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      transition: box-shadow .2s;
+    }
+    .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.12); }
+
+    .card h3 {
+      font-size: 1.05rem;
+      color: #1a3a5c;
+      margin-bottom: .4rem;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+    .card p { font-size: .9rem; color: #444; margin-bottom: .8rem; }
+    .card .tags { margin-bottom: .8rem; }
+    .tag {
+      display: inline-block;
+      background: #eaf3fb;
+      color: #1a6496;
+      border-radius: 3px;
+      padding: .1rem .5rem;
+      font-size: .78rem;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      margin-right: .3rem;
+    }
+    .card a.btn {
+      font-size: .85rem;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: #1a6496;
+      color: #fff;
+      padding: .28rem .8rem;
+      border-radius: 3px;
+      margin-right: .4rem;
+      display: inline-block;
+    }
+    .card a.btn:hover { background: #145278; text-decoration: none; }
+    .card a.btn.outline {
+      background: transparent;
+      color: #1a6496;
+      border: 1px solid #1a6496;
+    }
+    .card a.btn.outline:hover { background: #1a6496; color: #fff; }
+
+    /* ── Publications ─────────────────────────────────────── */
+    .pub-list { list-style: none; }
+    .pub-list li {
+      padding: .9rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .pub-list li:last-child { border-bottom: none; }
+
+    .pub-title {
+      font-weight: bold;
+      font-size: 1rem;
+      color: #1a3a5c;
+      display: block;
+      margin-bottom: .2rem;
+    }
+    .pub-authors { font-size: .9rem; color: #555; }
+    .pub-venue {
+      font-style: italic;
+      font-size: .9rem;
+      color: #666;
+    }
+    .pub-links { margin-top: .4rem; }
+    .pub-links a {
+      font-size: .82rem;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: #e8f0f8;
+      padding: .15rem .6rem;
+      border-radius: 3px;
+      margin-right: .4rem;
+      color: #1a6496;
+    }
+    .pub-links a:hover { background: #1a6496; color: #fff; text-decoration: none; }
+
+    /* ── Footer ───────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: .85rem;
+      color: #888;
+      border-top: 1px solid #ddd;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* ── Responsive ───────────────────────────────────────── */
+    @media (max-width: 540px) {
+      header h1 { font-size: 1.8rem; }
+      .avatar-placeholder { width: 90px; height: 90px; font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ────────────────── HEADER ────────────────── -->
+<header>
+  <h1>Titus Quah</h1>
+  <p class="tagline">Researcher &middot; Engineer &middot; Builder</p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#publications">Publications</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ────────────────── MAIN ──────────────────── -->
+<main>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About</h2>
+    <div class="about-grid">
+      <div class="avatar-placeholder" aria-hidden="true">🎓</div>
+      <div class="about-text">
+        <p>
+          Hi! I am Titus Quah, a researcher and software engineer with interests in
+          machine learning, systems, and applied mathematics. I enjoy building tools
+          that bridge the gap between research and real-world impact.
+        </p>
+        <p>
+          I am currently based in Singapore and open to collaborations in research
+          and open-source projects.
+        </p>
+        <div class="contact-links" id="contact">
+          <a href="https://github.com/titusswsquah" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:titusswsquah@u.nus.edu">Email</a>
+          <a href="https://scholar.google.com/citations?user=YOURID" target="_blank" rel="noopener">Google Scholar</a>
+          <a href="cv.pdf" target="_blank" rel="noopener">CV / Résumé</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="card-grid">
+
+      <div class="card">
+        <h3>Project Alpha</h3>
+        <p>A framework for scalable distributed training of neural networks with
+           minimal communication overhead.</p>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">ML</span>
+          <span class="tag">Distributed</span>
+        </div>
+        <a href="#" class="btn">Homepage</a>
+        <a href="https://github.com/titusswsquah" class="btn outline">Code</a>
+      </div>
+
+      <div class="card">
+        <h3>Project Beta</h3>
+        <p>An interactive visualisation tool for exploring high-dimensional
+           embeddings in the browser.</p>
+        <div class="tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Visualisation</span>
+        </div>
+        <a href="#" class="btn">Homepage</a>
+        <a href="https://github.com/titusswsquah" class="btn outline">Code</a>
+      </div>
+
+      <div class="card">
+        <h3>Project Gamma</h3>
+        <p>A benchmark suite for evaluating language models on reasoning tasks
+           across multiple domains.</p>
+        <div class="tags">
+          <span class="tag">NLP</span>
+          <span class="tag">Benchmarks</span>
+          <span class="tag">LLM</span>
+        </div>
+        <a href="#" class="btn">Homepage</a>
+        <a href="https://github.com/titusswsquah" class="btn outline">Code</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section id="publications">
+    <h2>Publications</h2>
+    <ul class="pub-list">
+
+      <li>
+        <span class="pub-title">
+          Efficient Distributed Training via Gradient Compression with Bounded Error
+        </span>
+        <span class="pub-authors">Titus Quah, Author B, Author C</span><br />
+        <span class="pub-venue">
+          International Conference on Machine Learning (ICML), 2024
+        </span>
+        <div class="pub-links">
+          <a href="#" target="_blank" rel="noopener">Paper</a>
+          <a href="#" target="_blank" rel="noopener">arXiv</a>
+          <a href="#" target="_blank" rel="noopener">Code</a>
+          <a href="#" target="_blank" rel="noopener">Slides</a>
+        </div>
+      </li>
+
+      <li>
+        <span class="pub-title">
+          Probing Spatial Reasoning in Large Language Models: A Benchmark Study
+        </span>
+        <span class="pub-authors">Titus Quah, Author D</span><br />
+        <span class="pub-venue">
+          Findings of the Association for Computational Linguistics (ACL Findings), 2023
+        </span>
+        <div class="pub-links">
+          <a href="#" target="_blank" rel="noopener">Paper</a>
+          <a href="#" target="_blank" rel="noopener">arXiv</a>
+          <a href="#" target="_blank" rel="noopener">Dataset</a>
+        </div>
+      </li>
+
+      <li>
+        <span class="pub-title">
+          Interactive Exploration of High-Dimensional Data via Contrastive Embeddings
+        </span>
+        <span class="pub-authors">Titus Quah, Author E, Author F</span><br />
+        <span class="pub-venue">
+          IEEE Visualization (VIS), 2022
+        </span>
+        <div class="pub-links">
+          <a href="#" target="_blank" rel="noopener">Paper</a>
+          <a href="#" target="_blank" rel="noopener">Demo</a>
+          <a href="#" target="_blank" rel="noopener">Code</a>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+</main>
+
+<!-- ────────────────── FOOTER ────────────────── -->
+<footer>
+  &copy; 2026 Titus Quah &mdash;
+  Built with HTML &amp; CSS &mdash;
+  Hosted on <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a>
+</footer>
+
+</body>
+</html>
